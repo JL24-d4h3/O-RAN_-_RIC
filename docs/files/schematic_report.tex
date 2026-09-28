@@ -1,0 +1,329 @@
+% ============================================================
+%  schematic_report.tex
+%  Estructura (esqueleto) del reporte de Open RAN y RIC.
+%
+%  Este archivo compila POR SI SOLO en Overleaf.
+%  Para incluirlo dentro de otro documento (p. ej. un main.tex
+%  con \input{schematic_report}): borra el preambulo, es decir,
+%  todo lo que va desde \documentclass hasta la linea que abre
+%  el cuerpo del documento (sin incluirla), y la ultima linea.
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}   % tildes y 'n' con virgulilla (contenido en espanol)
+\usepackage[T1]{fontenc}      % separacion silabica correcta en palabras acentuadas
+\usepackage[spanish]{babel}   % idioma del documento
+
+% Deja que LaTeX estire un poco mas las lineas antes de resignarse a
+% desbordar el margen. Elimina los avisos "Overfull \hbox" de dos
+% titulos largos. Solo actua cuando no hay otra solucion.
+\setlength{\emergencystretch}{2em}
+
+% --- Saltos de pagina entre titulos consecutivos ---
+% LaTeX solo inserta la penalizacion que permite saltar de pagina ANTES
+% de un titulo si \@nobreak es falso, y \@nobreak solo se restablece
+% cuando arranca un parrafo. En un documento que (todavia) no tiene
+% texto no arranca ningun parrafo: el flag se queda en "true" y el
+% documento entero se vuelve un bloque indivisible, lo que produce una
+% pagina en blanco al inicio y todo el texto desbordando la hoja.
+% Restablecemos el flag antes de cada titulo. En cuanto haya texto el
+% resultado es exactamente el mismo, porque \everypar ya lo hacia.
+\makeatletter
+\let\ORIGsection\section
+\def\section{\@nobreakfalse\ORIGsection}
+\let\ORIGsubsection\subsection
+\def\subsection{\@nobreakfalse\ORIGsubsection}
+\let\ORIGsubsubsection\subsubsection
+\def\subsubsection{\@nobreakfalse\ORIGsubsubsection}
+\makeatother
+
+\begin{document}
+
+\section{Introducción}
+
+\subsection{Contexto y evolución de las redes de acceso radio}
+
+\subsubsection{Evolución de D-RAN, C-RAN y NG-RAN}
+\subsubsection{Limitaciones de las arquitecturas RAN tradicionales}
+\subsubsection{Necesidad de desagregación, virtualización y apertura}
+
+\subsection{Open RAN como paradigma de evolución de la RAN}
+
+\subsubsection{Principios fundamentales de Open RAN}
+\subsubsection{Desagregación e interoperabilidad multi-vendor}
+\subsubsection{Softwarización, virtualización y cloudificación}
+
+\subsection{Motivación y objetivos del reporte}
+
+\subsubsection{Importancia de la inteligencia en Open RAN}
+\subsubsection{Importancia de la seguridad en Open RAN}
+\subsubsection{Alcance y organización del reporte}
+
+
+\section{Arquitectura Open RAN}
+
+\subsection{Componentes fundamentales de la arquitectura}
+
+\subsubsection{O-RAN Radio Unit (O-RU)}
+\subsubsection{O-RAN Distributed Unit (O-DU)}
+\subsubsection{O-RAN Centralized Unit (O-CU)}
+
+\subsection{Control, gestión y orquestación}
+
+\subsubsection{Service Management and Orchestration (SMO)}
+\subsubsection{O-Cloud e infraestructura virtualizada}
+\subsubsection{Integración entre RAN, cloud y edge}
+
+\subsection{Interfaces abiertas de O-RAN}
+
+\subsubsection{Open Fronthaul}
+\subsubsection{E2, A1 y O1}
+\subsubsection{O2 e interacción con O-Cloud}
+
+\subsection{Despliegue y operación de O-RAN}
+
+\subsubsection{Distribución de componentes entre cloud, edge y sitios celulares}
+\subsubsection{Arquitecturas multi-vendor}
+\subsubsection{Interoperabilidad y pruebas de conformidad}
+
+
+\section{RAN Intelligent Controller (RIC)}
+
+\subsection{Concepto y función del RIC}
+
+\subsubsection{Motivación para introducir control inteligente en la RAN}
+\subsubsection{Control basado en datos y closed-loop automation}
+\subsubsection{Relación entre RIC y componentes de la RAN}
+
+\subsection{Near-Real-Time RIC}
+
+\subsubsection{Arquitectura y componentes internos}
+\subsubsection{Interfaz E2 y control de los E2 Nodes}
+\subsubsection{xApps y ejecución de lógica de control}
+\subsubsection{Gestión y mitigación de conflictos entre xApps}
+
+\subsection{Non-Real-Time RIC}
+
+\subsubsection{Arquitectura y relación con el SMO}
+\subsubsection{rApps y políticas de control}
+\subsubsection{Gestión de modelos y algoritmos AI/ML}
+
+\subsection{Interacción entre Near-RT RIC y Non-RT RIC}
+
+\subsubsection{Interfaz A1 y transferencia de políticas}
+\subsubsection{Flujos de información y control}
+\subsubsection{Coordinación entre diferentes escalas temporales}
+
+
+\section{Aplicaciones y casos de uso del RIC}
+
+\subsection{Gestión y optimización de recursos radio}
+
+\subsubsection{Radio Resource Management}
+\subsubsection{Load balancing}
+\subsubsection{Mobility management y handover}
+
+\subsection{Optimización de tráfico y calidad de servicio}
+
+\subsubsection{Traffic steering}
+\subsubsection{QoS y QoE management}
+\subsubsection{SLA assurance}
+
+\subsection{Optimización energética}
+
+\subsubsection{Energy-efficient RAN}
+\subsubsection{Control dinámico de recursos y celdas}
+\subsubsection{Uso de AI/ML para optimización energética}
+
+\subsection{Network slicing y servicios avanzados}
+
+\subsubsection{Slice-aware RAN control}
+\subsubsection{Orquestación y assurance de slices}
+\subsubsection{Aplicaciones para V2X e Industry 5.0}
+
+\subsection{Otros casos de uso y aplicaciones emergentes}
+
+\subsubsection{Dynamic spectrum sharing}
+\subsubsection{Detección de anomalías y optimización basada en ML}
+\subsubsection{Aplicaciones para redes privadas y escenarios heterogéneos}
+
+
+\section{Implementación del RIC y ecosistema de desarrollo}
+
+\subsection{Implementaciones y plataformas de RIC}
+
+\subsubsection{O-RAN Software Community (OSC)}
+\subsubsection{ONF SD-RAN}
+\subsubsection{FlexRIC y otras implementaciones}
+
+\subsection{Desarrollo y ciclo de vida de xApps}
+
+\subsubsection{Arquitectura de una xApp}
+\subsubsection{Interfaces, APIs y modelos de servicio}
+\subsubsection{Despliegue, gestión y depuración de xApps}
+
+\subsection{AI/ML aplicado al RIC}
+
+\subsubsection{Flujo de datos y entrenamiento de modelos}
+\subsubsection{Inferencia y toma de decisiones}
+\subsubsection{Closed-loop control basado en AI/ML}
+
+\subsection{Plataformas experimentales y testbeds}
+
+\subsubsection{OpenAirInterface y srsRAN}
+\subsubsection{Colosseum y Arena}
+\subsubsection{Plataformas PAWR y 5Genesis}
+
+
+\section{Seguridad en Open RAN}
+
+\subsection{Superficie de ataque de Open RAN}
+
+\subsubsection{Impacto de la desagregación y multi-vendorismo}
+\subsubsection{Virtualización, cloudificación y software de terceros}
+\subsubsection{Nuevos vectores de ataque introducidos por las interfaces abiertas}
+
+\subsection{Amenazas sobre los componentes e interfaces}
+
+\subsubsection{Amenazas sobre O-RU, O-DU y O-CU}
+\subsubsection{Amenazas sobre las interfaces E2, A1, O1 y O2}
+\subsubsection{Amenazas sobre el Open Fronthaul}
+
+\subsection{Amenazas asociadas al RIC y sus aplicaciones}
+
+\subsubsection{xApps y rApps maliciosas o comprometidas}
+\subsubsection{Ataques contra E2 Nodes y señalización}
+\subsubsection{Conflictos y manipulación de decisiones de control}
+
+\subsection{Ataques y riesgos de seguridad}
+
+\subsubsection{Denial of Service y Distributed Denial of Service}
+\subsubsection{Man-in-the-Middle y ataques sobre las comunicaciones}
+\subsubsection{Spoofing, inyección de datos y manipulación de tráfico}
+\subsubsection{Ataques relacionados con AI/ML}
+
+\subsection{Privacidad y protección de información}
+
+\subsubsection{Datos de usuarios y telemetría de la RAN}
+\subsubsection{Riesgos derivados de la recopilación y exposición de datos}
+\subsubsection{Privacidad en escenarios de inteligencia distribuida}
+
+
+\section{Mecanismos y estrategias de seguridad para Open RAN}
+
+\subsection{Seguridad de interfaces y comunicaciones}
+
+\subsubsection{Autenticación y autorización}
+\subsubsection{Protección de las comunicaciones mediante mecanismos criptográficos}
+\subsubsection{Integridad y confidencialidad de la información}
+
+\subsection{Control de acceso y confianza en el ecosistema O-RAN}
+
+\subsubsection{Gestión de identidades y privilegios}
+\subsubsection{Zero Trust aplicado a Open RAN}
+\subsubsection{Verificación y aislamiento de aplicaciones}
+
+\subsection{Seguridad de xApps y rApps}
+
+\subsubsection{Validación y autenticación de aplicaciones}
+\subsubsection{Gestión de permisos y privilegios}
+\subsubsection{Detección de comportamiento malicioso}
+
+\subsection{Detección y mitigación de ataques}
+
+\subsubsection{Monitoreo de interfaces y tráfico}
+\subsubsection{Detección basada en anomalías}
+\subsubsection{Uso de AI/ML para seguridad}
+
+\subsection{Estandarización y buenas prácticas}
+
+\subsubsection{Esfuerzos de estandarización de seguridad}
+\subsubsection{Interoperabilidad y pruebas de seguridad}
+\subsubsection{Gestión del ciclo de vida y actualización de componentes}
+
+
+\section{Relación entre RIC, inteligencia y seguridad}
+
+\subsection{El RIC como habilitador de mecanismos de seguridad}
+
+\subsubsection{Monitoreo inteligente de la RAN}
+\subsubsection{Detección de anomalías en tiempo casi real}
+\subsubsection{Respuesta y mitigación mediante closed-loop control}
+
+\subsection{Seguridad de los mecanismos de inteligencia}
+
+\subsubsection{Ataques contra modelos y datos AI/ML}
+\subsubsection{Manipulación de modelos y decisiones}
+\subsubsection{Seguridad del ciclo de vida AI/ML}
+
+\subsection{Trade-offs entre inteligencia, apertura y seguridad}
+
+\subsubsection{Beneficios de la apertura frente a la ampliación de la superficie de ataque}
+\subsubsection{Flexibilidad multi-vendor frente a complejidad de integración}
+\subsubsection{Automatización frente a riesgos asociados al control autónomo}
+
+
+\section{Desafíos y oportunidades de investigación}
+
+\subsection{Desafíos arquitectónicos y de interoperabilidad}
+
+\subsubsection{Interoperabilidad multi-vendor}
+\subsubsection{Evolución de interfaces y E2 Service Models}
+\subsubsection{Escalabilidad y distribución cloud-edge}
+
+\subsection{Desafíos de inteligencia y control}
+
+\subsubsection{Latencia y restricciones temporales}
+\subsubsection{Conflictos entre aplicaciones del RIC}
+\subsubsection{Generalización y confiabilidad de modelos AI/ML}
+
+\subsection{Desafíos de seguridad}
+
+\subsubsection{Protección de componentes y aplicaciones de terceros}
+\subsubsection{Seguridad de interfaces abiertas}
+\subsubsection{Ataques contra AI/ML y control inteligente}
+
+\subsection{Direcciones futuras}
+
+\subsubsection{Evolución hacia redes 6G}
+\subsubsection{Nuevos casos de uso y arquitecturas}
+\subsubsection{Integración de inteligencia y seguridad por diseño}
+
+
+\section{Análisis y discusión}
+
+\subsection{Síntesis de la evolución hacia O-RAN inteligente y seguro}
+
+\subsubsection{Relación entre apertura, desagregación e inteligencia}
+\subsubsection{Relación entre RIC, automatización y optimización}
+\subsubsection{Relación entre apertura, inteligencia y seguridad}
+
+\subsection{Comparación de enfoques de implementación}
+
+\subsubsection{Características de las principales implementaciones}
+\subsubsection{Capacidades para desarrollo y experimentación}
+\subsubsection{Limitaciones identificadas en la literatura}
+
+\subsection{Análisis de los principales desafíos}
+
+\subsubsection{Desafíos técnicos}
+\subsubsection{Desafíos de seguridad}
+\subsubsection{Desafíos de estandarización e interoperabilidad}
+
+
+\section{Conclusiones}
+
+\subsection{Principales hallazgos}
+
+\subsubsection{Características fundamentales de Open RAN}
+\subsubsection{Rol del RIC en la evolución de la RAN}
+\subsubsection{Principales implicaciones de seguridad}
+
+\subsection{Perspectivas futuras}
+
+\subsubsection{Evolución del RIC y las arquitecturas O-RAN}
+\subsubsection{Evolución de las estrategias de seguridad}
+\subsubsection{Oportunidades de investigación en 5G-Advanced y 6G}
+
+\end{document}
